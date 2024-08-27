@@ -13,7 +13,7 @@ topology:
     linux:
       image: alpine
   defaults:
-    kind: ceoslab
+    kind: ceos
 
 
   nodes:
@@ -21,55 +21,55 @@ topology:
         binds:
           - ./sn/tac-l3device.txt:/mnt/flash/ceos-config:ro
           - ./sn/token:/mnt/flash/token:ro
-        mgmt-ipv4: 172.300.300.11
+        mgmt-ipv4: 172.100.100.11
     tac-spine1:
         binds:
           - ./sn/tac-spine1.txt:/mnt/flash/ceos-config:ro
           - ./sn/token:/mnt/flash/token:ro
-        mgmt-ipv4: 172.300.300.12
+        mgmt-ipv4: 172.100.100.12
     tac-spine2:
         binds:
           - ./sn/tac-spine2.txt:/mnt/flash/ceos-config:ro
           - ./sn/token:/mnt/flash/token:ro
-        mgmt-ipv4: 172.300.300.13
+        mgmt-ipv4: 172.100.100.13
     tac-leaf1:
         binds:
           - ./sn/tac-leaf1.txt:/mnt/flash/ceos-config:ro
           - ./sn/token:/mnt/flash/token:ro
-        mgmt-ipv4: 172.300.300.14
+        mgmt-ipv4: 172.100.100.14
     tac-leaf2:
         binds:
           - ./sn/tac-leaf2.txt:/mnt/flash/ceos-config:ro
           - ./sn/token:/mnt/flash/token:ro
-        mgmt-ipv4: 172.300.300.15
+        mgmt-ipv4: 172.100.100.15
     tac-leaf3:
         binds:
           - ./sn/tac-leaf3.txt:/mnt/flash/ceos-config:ro
           - ./sn/token:/mnt/flash/token:ro
-        mgmt-ipv4: 172.300.300.16
+        mgmt-ipv4: 172.100.100.16
     tac-leaf4:
         binds:
           - ./sn/tac-leaf4.txt:/mnt/flash/ceos-config:ro
           - ./sn/token:/mnt/flash/token:ro
-        mgmt-ipv4: 172.300.300.17
+        mgmt-ipv4: 172.100.100.17
     tac-host1:
         kind: linux
-        mgmt-ipv4: 172.300.300.19
+        mgmt-ipv4: 172.100.100.19
         env:
           TMODE: lacp
     tac-host2:
         kind: linux
-        mgmt-ipv4: 172.300.300.20
+        mgmt-ipv4: 172.100.100.20
         env:
           TMODE: lacp
     tac-host3:
         kind: linux
-        mgmt-ipv4: 172.300.300.21
+        mgmt-ipv4: 172.100.100.21
         env:
           TMODE: lacp
     tac-host4:
         kind: linux
-        mgmt-ipv4: 172.300.300.22
+        mgmt-ipv4: 172.100.100.22
         env:
           TMODE: lacp
 
@@ -173,5 +173,5 @@ topology:
 
 mgmt:
   network: ceos_clab_tac
-  ipv4-subnet: 172.300.300.0/24
-  ipv6-subnet: 2001:172:300:300::/80
+  ipv4-subnet: 172.100.100.0/24
+  ipv6-subnet: 2001:172:100:100::/80
