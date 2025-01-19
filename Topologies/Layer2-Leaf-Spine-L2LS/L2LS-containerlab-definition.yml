@@ -1,4 +1,4 @@
-name: tac-test-fabric
+name: ks-l2ls-fabric
 topology:
   kinds:
     ceos:
@@ -17,57 +17,57 @@ topology:
 
 
   nodes:
-    tac-l3device:
+    ks-l3device:
         binds:
-          - ./sn/tac-l3device.txt:/mnt/flash/ceos-config:ro
+          - ./sn/ks-l3device.txt:/mnt/flash/ceos-config:ro
           - ./sn/token:/mnt/flash/token:ro
         mgmt-ipv4: 172.100.100.11
-    tac-spine1:
+    ks-spine1:
         binds:
-          - ./sn/tac-spine1.txt:/mnt/flash/ceos-config:ro
+          - ./sn/ks-spine1.txt:/mnt/flash/ceos-config:ro
           - ./sn/token:/mnt/flash/token:ro
         mgmt-ipv4: 172.100.100.12
-    tac-spine2:
+    ks-spine2:
         binds:
-          - ./sn/tac-spine2.txt:/mnt/flash/ceos-config:ro
+          - ./sn/ks-spine2.txt:/mnt/flash/ceos-config:ro
           - ./sn/token:/mnt/flash/token:ro
         mgmt-ipv4: 172.100.100.13
-    tac-leaf1:
+    ks-leaf1:
         binds:
-          - ./sn/tac-leaf1.txt:/mnt/flash/ceos-config:ro
+          - ./sn/ks-leaf1.txt:/mnt/flash/ceos-config:ro
           - ./sn/token:/mnt/flash/token:ro
         mgmt-ipv4: 172.100.100.14
-    tac-leaf2:
+    ks-leaf2:
         binds:
-          - ./sn/tac-leaf2.txt:/mnt/flash/ceos-config:ro
+          - ./sn/ks-leaf2.txt:/mnt/flash/ceos-config:ro
           - ./sn/token:/mnt/flash/token:ro
         mgmt-ipv4: 172.100.100.15
-    tac-leaf3:
+    ks-leaf3:
         binds:
-          - ./sn/tac-leaf3.txt:/mnt/flash/ceos-config:ro
+          - ./sn/ks-leaf3.txt:/mnt/flash/ceos-config:ro
           - ./sn/token:/mnt/flash/token:ro
         mgmt-ipv4: 172.100.100.16
-    tac-leaf4:
+    ks-leaf4:
         binds:
-          - ./sn/tac-leaf4.txt:/mnt/flash/ceos-config:ro
+          - ./sn/ks-leaf4.txt:/mnt/flash/ceos-config:ro
           - ./sn/token:/mnt/flash/token:ro
         mgmt-ipv4: 172.100.100.17
-    tac-host1:
+    ks-host1:
         kind: linux
         mgmt-ipv4: 172.100.100.19
         env:
           TMODE: lacp
-    tac-host2:
+    ks-host2:
         kind: linux
         mgmt-ipv4: 172.100.100.20
         env:
           TMODE: lacp
-    tac-host3:
+    ks-host3:
         kind: linux
         mgmt-ipv4: 172.100.100.21
         env:
           TMODE: lacp
-    tac-host4:
+    ks-host4:
         kind: linux
         mgmt-ipv4: 172.100.100.22
         env:
@@ -77,101 +77,101 @@ topology:
   links:
 
   ##############################
-  # L3_Device to tac-spines
+  # L3_Device to ks-spines
   ##############################
 
     - endpoints:
-      - tac-l3device:eth1
-      - tac-spine1:eth5
+      - ks-l3device:eth1
+      - ks-spine1:eth5
     - endpoints:
-      - tac-l3device:eth2
-      - tac-spine2:eth5
+      - ks-l3device:eth2
+      - ks-spine2:eth5
 
   ##############################
-  # tac-spine to tac-spine
-  ##############################
-
-    - endpoints:
-      - tac-spine1:eth47
-      - tac-spine2:eth47
-    - endpoints:
-      - tac-spine1:eth48
-      - tac-spine2:eth48
-
-  ##############################
-  # tac-spine1 to tac-leafs
+  # ks-spine to ks-spine
   ##############################
 
     - endpoints:
-      - tac-spine1:eth1
-      - tac-leaf1:eth1
+      - ks-spine1:eth47
+      - ks-spine2:eth47
     - endpoints:
-      - tac-spine1:eth2
-      - tac-leaf2:eth1
-    - endpoints:
-      - tac-spine1:eth3
-      - tac-leaf3:eth1
-    - endpoints:
-      - tac-spine1:eth4
-      - tac-leaf4:eth1
+      - ks-spine1:eth48
+      - ks-spine2:eth48
 
   ##############################
-  # tac-spine2 to tac-leafs
+  # ks-spine1 to ks-leafs
   ##############################
 
     - endpoints:
-      - tac-spine2:eth1
-      - tac-leaf1:eth2
+      - ks-spine1:eth1
+      - ks-leaf1:eth1
     - endpoints:
-      - tac-spine2:eth2
-      - tac-leaf2:eth2
+      - ks-spine1:eth2
+      - ks-leaf2:eth1
     - endpoints:
-      - tac-spine2:eth3
-      - tac-leaf3:eth2
+      - ks-spine1:eth3
+      - ks-leaf3:eth1
     - endpoints:
-      - tac-spine2:eth4
-      - tac-leaf4:eth2
+      - ks-spine1:eth4
+      - ks-leaf4:eth1
 
   ##############################
-  # tac-leaf1 to tac-leaf2
-  ##############################
-
-    - endpoints:
-      - tac-leaf1:eth47
-      - tac-leaf2:eth47
-    - endpoints:
-      - tac-leaf1:eth48
-      - tac-leaf2:eth48
-
-  ##############################
-  # tac-leaf3 to tac-leaf4
+  # ks-spine2 to ks-leafs
   ##############################
 
     - endpoints:
-      - tac-leaf3:eth47
-      - tac-leaf4:eth47
+      - ks-spine2:eth1
+      - ks-leaf1:eth2
     - endpoints:
-      - tac-leaf3:eth48
-      - tac-leaf4:eth48
+      - ks-spine2:eth2
+      - ks-leaf2:eth2
+    - endpoints:
+      - ks-spine2:eth3
+      - ks-leaf3:eth2
+    - endpoints:
+      - ks-spine2:eth4
+      - ks-leaf4:eth2
 
   ##############################
-  # tac-leafs to tac-hosts
+  # ks-leaf1 to ks-leaf2
   ##############################
 
     - endpoints:
-      - tac-leaf1:eth3
-      - tac-host1:eth3
+      - ks-leaf1:eth47
+      - ks-leaf2:eth47
     - endpoints:
-      - tac-leaf2:eth3
-      - tac-host2:eth3
+      - ks-leaf1:eth48
+      - ks-leaf2:eth48
+
+  ##############################
+  # ks-leaf3 to ks-leaf4
+  ##############################
+
     - endpoints:
-      - tac-leaf3:eth3
-      - tac-host3:eth3
+      - ks-leaf3:eth47
+      - ks-leaf4:eth47
     - endpoints:
-      - tac-leaf4:eth3
-      - tac-host4:eth3
+      - ks-leaf3:eth48
+      - ks-leaf4:eth48
+
+  ##############################
+  # ks-leafs to ks-hosts
+  ##############################
+
+    - endpoints:
+      - ks-leaf1:eth3
+      - ks-host1:eth3
+    - endpoints:
+      - ks-leaf2:eth3
+      - ks-host2:eth3
+    - endpoints:
+      - ks-leaf3:eth3
+      - ks-host3:eth3
+    - endpoints:
+      - ks-leaf4:eth3
+      - ks-host4:eth3
 
 mgmt:
-  network: ceos_clab_tac
+  network: ceos_clab_ks
   ipv4-subnet: 172.100.100.0/24
   ipv6-subnet: 2001:172:100:100::/80
